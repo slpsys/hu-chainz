@@ -8,7 +8,7 @@
 
 (def first-string (comp str first))
 
-(defn token-to-chain2
+(defn token-to-chain
   ""
   [token-list]
   (let [first-pair [:start (first token-list)]]
@@ -16,21 +16,6 @@
       (not (seq token-list)) [[:start :end]]
       (not (has-more? token-list)) [first-pair [(first token-list) :end]]
       :else (cons first-pair (zip token-list (conj (vec (rest token-list)) :end))))))
-
-(defn token-to-chain
-  "Converts a chain "
-  [token-list]
-  (loop [tokens token-list
-         last-token :start
-         cur-token (if (seq tokens) (first-string tokens) :end)
-         chain []]
-    (let [nu-chain (cons [last-token cur-token] chain)]
-      (unless (seq tokens)
-        nu-chain
-        (recur (rest tokens)
-               cur-token
-               (if (has-more? tokens) (second tokens) :end)
-               nu-chain)))))
 
 (defn construct-state-map
   ""
