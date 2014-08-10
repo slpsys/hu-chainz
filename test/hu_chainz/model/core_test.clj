@@ -1,6 +1,6 @@
-(ns hu-chainz.core-test
+(ns hu-chainz.model.core-test
   (:require [midje.sweet :refer :all]
-            [hu-chainz.core :refer :all]))
+            [hu-chainz.model.core :refer :all]))
 
 (facts "about `tokenize`"
 	(fact ""
