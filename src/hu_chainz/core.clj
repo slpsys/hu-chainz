@@ -1,12 +1,12 @@
 (ns hu-chainz.core
   (:require [hu-chainz.common :refer :all]))
 
-(defn tokenize-line
-  "Tokenizes...the line"
+(defn tokenize
+  "Tokenizes...the text"
   [line]
-  (clojure.string/split line #"[\s\t\n]"))
+  (remove #(= "" %) (clojure.string/split line #"[\s\t\n]")))
 
-(defn token-to-chain
+(defn token-list-to-chain
   "Converts a sequence of tokens to a sequence of ordered pairs,
     e.g. ('a' 'b') => ([:start 'a'] ['a' 'b'] ['b' :end])"
   [token-list]
@@ -31,14 +31,15 @@
                              (incr (get inner-map second-token)))
                  (assoc inner-map second-token 1)))))))
 
-(defn token-to-map
-  [token-chain existing-map]
-  (let [updated-map (update-map (first token-chain) existing-map)]
-    (if (has-more? token-chain)
-      (recur (rest token-chain) updated-map)
-      updated-map)))
+(defn chain-to-map
+  ([token-chain] (chain-to-map token-chain {}))
+  ([token-chain existing-map]
+   (let [updated-map (update-map (first token-chain) existing-map)]
+     (if (has-more? token-chain)
+       (recur (rest token-chain) updated-map)
+       updated-map))))
 
-(defn feed
+(defn textulate
   "I don't do a whole lot."
   [text]
-  (-> text tokenize-line construct-state-map))
+  (-> text tokenize token-list-to-chain chain-to-map))
