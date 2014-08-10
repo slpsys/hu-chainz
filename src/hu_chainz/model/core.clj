@@ -1,4 +1,4 @@
-(ns hu-chainz.core
+(ns hu-chainz.model.core
   (:require [hu-chainz.common :refer :all]))
 
 (defn tokenize

@@ -1,4 +1,4 @@
-(ns hu-chainz.filter
+(ns hu-chainz.model.filter
   (:require [hu-chainz.common :refer :all]))
 
 (defn- apply-all
