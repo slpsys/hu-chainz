@@ -1,7 +1,7 @@
-(ns hu-chainz.core-test
+(ns hu-chainz.filter-test
   (:require [midje.sweet :refer :all]
             [hu-chainz.core :refer :all]))
 
-(facts "about `tokenize`"
+(facts "about `apply-all`"
 	(fact ""
 		true => true))
