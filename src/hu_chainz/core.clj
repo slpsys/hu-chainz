@@ -38,27 +38,6 @@
       (recur (rest token-chain) updated-map)
       updated-map)))
 
-(defn construct-state-map
-  ""
-  [token-list]
-  (loop [tokens token-list
-         cur-token (if (seq tokens) (first-string tokens) :end)
-         last-token :start
-         states {last-token {cur-token 1}}]
-    (let [last-state (get states last-token)]
-      (prn last-state)
-      (if (contains? last-state cur-token)
-        (assoc last-state cur-token (-> cur-token (get last-state) incr))
-        (assoc last-state cur-token 1)))))
-  ;  ()
-  ;  (prn states)
-  ;  (unless (seq tokens)
-  ;    (assoc states last-state (assoc (get states last-state) :end 1))
-  ;    (let [])
-  ;    (if (contains? states (first-string tokens))
-  ;      (assoc states last-state (assoc (get states last-state) :end 1))
-  ;    nil)))
-
 (defn feed
   "I don't do a whole lot."
   [text]
