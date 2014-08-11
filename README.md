@@ -4,7 +4,14 @@ A Clojure library designed to ... well, that part is up to you.
 
 ## Usage
 
-FIXME
+    (require ['hu-chainz.model.core :refer ['feed]])
+
+    (def corpus "i am a cat
+    i am a dog
+    i am the walrus")
+
+    (feed corpus)
+
 
 ## License
 
