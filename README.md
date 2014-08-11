@@ -11,13 +11,13 @@ With an example, newline-delimited document:
     user=> (require ['hu-chainz.model.core :refer ['feed]])
     nil
 
-		user=> (def corpus "i am a cat
-		  #_=> i am a dog
-		  #_=> i am the walrus")
-		#'user/corpus
+    user=> (def corpus "i am a cat
+      #_=> i am a dog
+      #_=> i am the walrus")
+    #'user/corpus
 
-		user=> (feed corpus)
-		{"walrus" {:end 1}, "the" {"walrus" 1}, "dog" {:end 1}, "cat" {:end 1}, "a" {"dog" 1, "cat" 1}, "am" {"the" 1, "a" 2}, "i" {"am" 3}, :start {"i" 3}}
+    user=> (feed corpus)
+    {"walrus" {:end 1}, "the" {"walrus" 1}, "dog" {:end 1}, "cat" {:end 1}, "a" {"dog" 1, "cat" 1}, "am" {"the" 1, "a" 2}, "i" {"am" 3}, :start {"i" 3}}
 
 While it's not integrated yet, there's nothing stopping you from `map`ping the result of `feed` over a set of documents, and merging the results into a combined model using `merge-nested-maps`:
 
