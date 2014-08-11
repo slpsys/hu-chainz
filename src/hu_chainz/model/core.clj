@@ -4,7 +4,7 @@
 (defn tokenize
   "Tokenizes...the text"
   [line]
-  (remove #(= "" %) (clojure.string/split line #"[\s\t\n]")))
+  (remove #(= "" %) (clojure.string/split (str line) #"[\s\t\n]")))
 
 (defn token-list-to-chain
   "Converts a sequence of tokens to a sequence of ordered pairs,
@@ -53,7 +53,7 @@
            (reduce #(assoc %1 %2 (merge-with + (get larger-map %2) (get smaller-map %2))) {} conflicted-keys))))
 
 (defn feed
-  [corpus & {:keys [tokenizer-fn phrase-boundary-fn]
-              :or {tokenizer-fn tokenize phrase-boundary-fn clojure.string/split-lines}}]
-    (let [phrases (phrase-boundary-fn corpus)]
+  [corpus & {:keys [tokenizer-fn phrase-split-fn]
+              :or {tokenizer-fn tokenize phrase-split-fn clojure.string/split-lines}}]
+    (let [phrases (phrase-split-fn corpus)]
       (reduce merge-nested-maps (map textulate phrases))))
