@@ -21,13 +21,13 @@ With an example, newline-delimited document:
 
 While it's not integrated yet, there's nothing stopping you from `map`ping the result of `feed` over a set of documents, and merging the results into a combined model using `merge-nested-maps`:
 
-  user=> (def opus "dogs rule
-    #_=> cats drool")
-  #'user/opus
+    user=> (def opus "dogs rule
+      #_=> cats drool")
+    #'user/opus
 
-  user=> (let [[cmodel omodel] (map feed [corpus opus])]
-    #_=>   (merge-nested-maps cmodel omodel))
-  {"dog" {:end 1}, "rule" {:end 1}, "drool" {:end 1}, "cats" {"drool" 1}, :start {"dogs" 1, "cats" 1, "i" 3}, "am" {"the" 1, "a" 2}, "a" {"dog" 1, "cat" 1}, "i" {"am" 3}, "walrus" {:end 1}, "cat" {:end 1}, "dogs" {"rule" 1}, "the" {"walrus" 1}}
+    user=> (let [[cmodel omodel] (map feed [corpus opus])]
+      #_=>   (merge-nested-maps cmodel omodel))
+    {"dog" {:end 1}, "rule" {:end 1}, "drool" {:end 1}, "cats" {"drool" 1}, :start {"dogs" 1, "cats" 1, "i" 3}, "am" {"the" 1, "a" 2}, "a" {"dog" 1, "cat" 1}, "i" {"am" 3}, "walrus" {:end 1}, "cat" {:end 1}, "dogs" {"rule" 1}, "the" {"walrus" 1}}
 
 Note that cats drooling is tautological in this model.
 
