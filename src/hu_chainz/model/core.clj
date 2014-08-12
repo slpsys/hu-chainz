@@ -32,11 +32,10 @@
                  (assoc inner-map second-token 1)))))))
 
 (defn chain-to-map
-  ([token-chain] (chain-to-map token-chain {}))
-  ([token-chain existing-map]
+  ([token-chain & {:keys [existing-map] :or {existing-map {}}}]
    (let [updated-map (update-map (first token-chain) existing-map)]
      (if (has-more? token-chain)
-       (recur (rest token-chain) updated-map)
+       (recur (rest token-chain) {:existing-map updated-map})
        updated-map))))
 
 (defn textulate
