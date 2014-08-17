@@ -31,6 +31,17 @@ While it's not integrated yet, there's nothing stopping you from `map`ping the r
 
 Note that cats drooling is tautological in this model.
 
+The constructed model can then be fed directly into `generate`, which returns a sequence of strings:
+
+    user=> (clojure.string/join " "(generate model))
+    "i am a dog"
+    user=> (clojure.string/join " " (generate model))
+    "i am a cat"
+    user=> (clojure.string/join " " (generate model))
+    "i am a cat"
+    user=> (clojure.string/join " " (generate model))
+    "i am the walrus"
+
 ## License
 
 Copyright © 2014 Marc Bollinger

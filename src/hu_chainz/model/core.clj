@@ -56,3 +56,21 @@
               :or {tokenizer-fn tokenize phrase-split-fn clojure.string/split-lines}}]
     (let [phrases (phrase-split-fn corpus)]
       (reduce merge-nested-maps (map textulate phrases))))
+
+(defn find-next-token
+  [token-map idx]
+  (let [[token value] (first token-map)]
+    (if (or (< idx value) (not (has-more? token-map)))
+      token
+      (recur (rest token-map) (- idx value)))))
+
+(defn generate
+  ([model] (generate model :start '()))
+  ([model cur-token cur-phrase]
+    (let [cur-map (get model cur-token)
+          size (-> cur-map vals sum)
+          idx (-> size rand int)
+          next-token (find-next-token (seq cur-map) idx)]
+      (if (= next-token :end)
+        (reverse cur-phrase)
+        (recur model next-token (conj cur-phrase next-token))))))

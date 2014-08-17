@@ -5,6 +5,8 @@
 
 (def decr (partial - 1))
 
+(def sum (partial reduce +))
+
 ; Seq funcs
 (def first-string (comp str first))
 
