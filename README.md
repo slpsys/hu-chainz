@@ -2,6 +2,12 @@
 
 Yet Another Markov Chain library/bot in Clojure
 
+## To-do
+
+1. Add helper script/code to pull down/clean text from Twitter accounts
+2. Refactor model to be hash of hashes?
+3. Add model serialization via abracad
+
 ## Usage
 
 `feed` takes a single document, containing a set of phrases, each composed of a set of tokens. Optionally, you can provide both a document-splitting function and a tokenizing function; the defaults are `clojure.string/split-lines` for the document splitter, and `hu-chainz.model/tokenize` for the tokenizer.
