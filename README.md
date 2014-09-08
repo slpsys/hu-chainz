@@ -6,7 +6,6 @@ Yet Another Markov Chain library/bot in Clojure
 
 1. Add helper script/code to pull down/clean text from Twitter accounts
 2. Refactor model to be hash of hashes?
-3. Add model serialization via abracad
 
 ## Usage
 
@@ -34,6 +33,16 @@ While it's not integrated yet, there's nothing stopping you from `map`ping the r
     user=> (let [[cmodel omodel] (map feed [corpus opus])]
       #_=>   (merge-nested-maps cmodel omodel))
     {"dog" {:end 1}, "rule" {:end 1}, "drool" {:end 1}, "cats" {"drool" 1}, :start {"dogs" 1, "cats" 1, "i" 3}, "am" {"the" 1, "a" 2}, "a" {"dog" 1, "cat" 1}, "i" {"am" 3}, "walrus" {:end 1}, "cat" {:end 1}, "dogs" {"rule" 1}, "the" {"walrus" 1}}
+
+You can also easily serialize your models via [transit](http://cognitect.github.io/transit-clj/)
+
+    user=> (require '[clojure.java.io :as io]
+                    '[cognitect.transit :as t])
+    nil
+
+    user=> (with-open [fh (clojure.java.io/output-stream "/tmp/model")]
+      #_=>   (t/write (t/writer fh :msgpack) (feed corpus)))
+    nil
 
 Note that cats drooling is tautological in this model.
 
