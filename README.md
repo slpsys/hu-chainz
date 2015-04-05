@@ -4,8 +4,9 @@ Yet Another Markov Chain library/bot in Clojure
 
 ## To-do
 
-1. Add helper script/code to pull down/clean text from Twitter accounts
-2. Refactor model to be hash of hashes?
+1. Streaming `feed`
+2. Test out [r/w] serialization time, size of Transit formats on models
+3. Add helper script/code to pull down/clean text from Twitter accounts
 
 ## Usage
 
