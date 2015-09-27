@@ -3,6 +3,8 @@
 /checkouts
 /classes
 /corpuses
+/models
+/scratchpad
 /target
 pom.xml
 pom.xml.asc

@@ -5,6 +5,7 @@
   (:import
      (java.io InputStreamReader)))
 
+(defn stringify [tokens] (clojure.string/join " " tokens))
 
 (defn create-model
   "Builds a model from a local filename."
