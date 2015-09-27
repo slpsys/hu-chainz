@@ -49,14 +49,30 @@ Note that cats drooling is tautological in this model.
 
 The constructed model can then be fed directly into `generate`, which returns a sequence of strings:
 
-    user=> (clojure.string/join " "(generate model))
+    user=> (stringify (generate model))
     "i am a dog"
-    user=> (clojure.string/join " " (generate model))
+    user=> (stringify (generate model))
     "i am a cat"
-    user=> (clojure.string/join " " (generate model))
+    user=> (stringify (generate model))
     "i am a cat"
-    user=> (clojure.string/join " " (generate model))
+    user=> (stringify (generate model))
     "i am the walrus"
+
+## Suggested Corpii
+
+### Twitter Dump
+
+You can request a full export of all of your tweets [here](https://twitter.com/settings/account), and after a few hours, receive a .zip archive that contains a static HTML app displaying your tweets. The tweet data itself is encapsulated in a series of Javascript/JSON files, under `data/js/tweets/`. I wrote a [quick Ruby script](https://gist.github.com/slpsys/fdea5354fec81b33fcd7) (in the interst of time) to dump the tweet data into a line-delimited single file. I just ran it quickly from `irb`, and it should give you a fairly clean corpus from which to build a model that sounds like a messed-up version of yourself.
+
+Build, use, and store your model:
+
+    user=> (def my-model (create-model "/Users/marc/tmp/tweetstorm.txt"))
+    #'user/my-model
+    user=> (-> my-model generate stringify) ;; Real output from my tweets
+    "This is feature-complete. Time elapsed before it's Friday, disheartenment a hot dog bed, receive dog."
+    ...
+    user=> (write-model my-model "/tmp/tweetstorm.model")
+    nil
 
 ## License
 
